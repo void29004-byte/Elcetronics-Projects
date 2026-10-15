@@ -1,4 +1,4 @@
-```java
+
 import processing.serial.*;
 
 Serial myPort;
@@ -191,4 +191,4 @@ void drawInformation() {
   textAlign(RIGHT);
   text("ARDUINO UNO + HC-SR04", width - 30, height - 20);
 }
-```
+
