@@ -35,10 +35,3 @@ This project is part of my self-learning journey in robotics, electronics, and e
 - Processing IDE
 - Serial Communication
 
-## 📂 Project Structure
-
-```text
-Arduino-Ultrasonic-Radar/
-├── radar.ino
-├── RadarVisualization.pde
-└── README.md
