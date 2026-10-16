@@ -14,16 +14,12 @@ float[] detectedDistances = new float[181];
 void setup() {
   size(1000, 700);
   smooth();
-
-  // Initialize detection history.
   for (int i = 0; i < detectedDistances.length; i++) {
     detectedDistances[i] = -1;
   }
 
-  // Display available serial ports.
   println(Serial.list());
 
-  // Connect to Arduino Uno on COM5.
   myPort = new Serial(this, "COM5", 9600);
   myPort.bufferUntil('\n');
 }
@@ -94,8 +90,6 @@ void drawRadar() {
   noFill();
   stroke(0, 180, 70);
   strokeWeight(1.5);
-
-  // Draw semicircular distance rings.
   for (int d = 60; d <= MAX_DISTANCE; d += 60) {
     float r = map(d, 0, MAX_DISTANCE, 0, RADAR_RADIUS);
 
@@ -109,15 +103,12 @@ void drawRadar() {
     noFill();
   }
 
-  // Draw angle guide lines.
   for (int a = 0; a <= 180; a += 30) {
     float x = RADAR_RADIUS * cos(radians(a));
     float y = -RADAR_RADIUS * sin(radians(a));
 
     line(0, 0, x, y);
   }
-
-  // Draw the baseline.
   line(-RADAR_RADIUS, 0, RADAR_RADIUS, 0);
 
   popMatrix();
@@ -126,8 +117,6 @@ void drawRadar() {
 void drawDetections() {
   float cx = width / 2.0;
   float cy = height - 100;
-
-  // Plot the latest valid detection at every angle.
   for (int a = 0; a <= 180; a++) {
     float d = detectedDistances[a];
 
@@ -137,7 +126,7 @@ void drawDetections() {
       float x = cx + r * cos(radians(a));
       float y = cy - r * sin(radians(a));
 
-      // Red detection point.
+     
       noStroke();
       fill(255, 30, 30);
       circle(x, y, 8);
@@ -151,13 +140,11 @@ void drawScanLine() {
 
   float x = cx + RADAR_RADIUS * cos(radians(angle));
   float y = cy - RADAR_RADIUS * sin(radians(angle));
-
-  // Main scanning line.
   stroke(0, 255, 80);
   strokeWeight(3);
   line(cx, cy, x, y);
 
-  // Scanner origin.
+  
   noStroke();
   fill(0, 255, 80);
   circle(cx, cy, 10);
